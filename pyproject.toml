@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novasearch"
+version = "1.0.0"
+authors = [{ name = "zeroydelta" }]
+description = "A production-grade Hybrid Search Engine combining BM25 Lexical Matching, Vector Search, and Reciprocal Rank Fusion."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+
+[project.scripts]
+novasearch = "novasearch.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["novasearch*"]
