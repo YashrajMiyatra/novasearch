@@ -10,8 +10,15 @@ from typing import Callable, Dict, List, Optional
 class FileCrawler:
     SUPPORTED_EXTENSIONS = {".md", ".txt", ".py", ".json", ".html", ".rst"}
 
-    def __init__(self, root_dir: str) -> None:
+    def __init__(
+        self,
+        root_dir: str,
+        allowed_extensions: Optional[List[str]] = None,
+        max_file_size: Optional[int] = None,
+    ) -> None:
         self.root_dir = os.path.abspath(root_dir)
+        self.extensions = set(allowed_extensions) if allowed_extensions else self.SUPPORTED_EXTENSIONS
+        self.max_file_size = max_file_size
 
     def crawl(
         self,
@@ -23,9 +30,11 @@ class FileCrawler:
                 continue  # skip hidden dirs like .git
             for fname in files:
                 ext = os.path.splitext(fname)[1].lower()
-                if ext in self.SUPPORTED_EXTENSIONS:
+                if ext in self.extensions:
                     fpath = os.path.join(root, fname)
                     try:
+                        if self.max_file_size and os.path.getsize(fpath) > self.max_file_size:
+                            continue
                         with open(fpath, "r", encoding="utf-8", errors="replace") as f:
                             content = f.read()
                         rel_path = os.path.relpath(fpath, self.root_dir)
