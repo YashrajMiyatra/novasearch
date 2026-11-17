@@ -25,6 +25,15 @@ Standard keyword search engines (like basic TF-IDF) fail on synonyms and intent.
 4. **Local Crawler & Highlighter**: Auto-indexes directories of Markdown/code/text files and extracts colorized matching excerpts.
 5. **Zero External Dependencies**: Pure standard library Python 3.
 
+```mermaid
+flowchart TD
+    Q["User Query"] --> BM25["1. BM25 Lexical Index (k1=1.5, b=0.75)"]
+    Q --> VEC["2. Dense Vector Index (Cosine Similarity)"]
+    BM25 --> RRF["3. Reciprocal Rank Fusion (k=60)"]
+    VEC --> RRF
+    RRF --> RES["4. Ranked Results + Syntax Highlighted Snippets"]
+```
+
 ---
 
 ## 🚀 Quickstart
