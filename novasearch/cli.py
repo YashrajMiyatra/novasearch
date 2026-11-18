@@ -11,6 +11,7 @@ from .engine import NovaEngine
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="NovaSearch: Hybrid Search Engine CLI")
+    parser.add_argument("-v", "--version", action="version", version="NovaSearch 1.0.0")
     parser.add_argument("path", nargs="?", default=".", help="Directory of documents to index and search")
     parser.add_argument("-q", "--query", help="Single query to run non-interactively")
     parser.add_argument("-k", "--top-k", type=int, default=5, help="Number of results to return")
