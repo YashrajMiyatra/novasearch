@@ -17,6 +17,12 @@ class TestBM25(unittest.TestCase):
     def test_empty_query(self):
         self.assertEqual(self.index.search(""), [])
 
+    def test_whitespace_query(self):
+        self.assertEqual(self.index.search("   "), [])
+
+    def test_unknown_terms(self):
+        self.assertEqual(self.index.search("nonexistentterm12345"), [])
+
 
 if __name__ == "__main__":
     unittest.main()
