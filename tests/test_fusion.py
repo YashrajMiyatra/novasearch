@@ -17,5 +17,21 @@ class TestRRF(unittest.TestCase):
         self.assertEqual(fused[2]["id"], "docC")
 
 
+    def test_empty_rankings(self):
+        self.assertEqual(reciprocal_rank_fusion([], []), [])
+
+    def test_disjoint_rankings(self):
+        lexical = [{"id": "doc1", "text": "lexical match"}]
+        vector = [{"id": "doc2", "text": "semantic match"}]
+        fused = reciprocal_rank_fusion(lexical, vector, k=60)
+        self.assertEqual(len(fused), 2)
+        self.assertEqual(fused[0]["rrf_score"], fused[1]["rrf_score"])
+
+    def test_top_n_truncation(self):
+        lexical = [{"id": f"doc_{i}", "text": f"text {i}"} for i in range(15)]
+        fused = reciprocal_rank_fusion(lexical, [], top_n=5)
+        self.assertEqual(len(fused), 5)
+
+
 if __name__ == "__main__":
     unittest.main()
