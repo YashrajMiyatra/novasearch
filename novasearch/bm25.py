@@ -1,6 +1,11 @@
 """
 Okapi BM25 Inverted Index & Scoring Engine.
 Implements modern Lucene/Elasticsearch-style BM25 ranking.
+
+Robertson-Spärck Jones Scoring Model:
+- Term Saturation (k1=1.5): Governs how rapidly term frequency dampens relevance gains.
+- Document Normalization (b=0.75): Penalizes overly verbose documents relative to avg_doc_len.
+- RSJ Inverse Document Frequency: log(1 + (N - n + 0.5) / (n + 0.5))
 """
 
 import math
