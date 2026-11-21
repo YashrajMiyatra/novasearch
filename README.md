@@ -4,6 +4,7 @@
 
 ### Production-Grade Hybrid Search Engine (BM25 + Semantic Search + Reciprocal Rank Fusion) from Scratch
 
+[![CI](https://github.com/YashrajMiyatra/novasearch/actions/workflows/ci.yml/badge.svg)](https://github.com/YashrajMiyatra/novasearch/actions)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Dependencies](https://img.shields.io/badge/dependencies-zero-success.svg)](https://github.com)
