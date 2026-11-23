@@ -11,6 +11,7 @@ from .fusion import reciprocal_rank_fusion
 from .crawler import FileCrawler
 from .highlighter import highlight_snippets
 from .tokenizer import tokenize
+from .metrics import compute_mrr, compute_ndcg_at_k
 
 __all__ = [
     "NovaEngine",
@@ -20,4 +21,6 @@ __all__ = [
     "FileCrawler",
     "highlight_snippets",
     "tokenize",
+    "compute_mrr",
+    "compute_ndcg_at_k",
 ]
