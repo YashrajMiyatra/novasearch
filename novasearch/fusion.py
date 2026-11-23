@@ -13,9 +13,12 @@ def reciprocal_rank_fusion(
     vector_results: List[Dict[str, Any]],
     k: int = 60,
     top_n: int = 10,
+    weight_bm25: float = 1.0,
+    weight_vector: float = 1.0,
 ) -> List[Dict[str, Any]]:
     """
-    Combines lexical and vector rankings using Reciprocal Rank Fusion.
+    Combines lexical and vector rankings using Weighted Reciprocal Rank Fusion.
+    Allows prioritizing lexical precision or semantic recall via weight_bm25 and weight_vector.
     """
     rrf_scores: Dict[str, float] = defaultdict(float)
     doc_details: Dict[str, Dict[str, Any]] = {}
@@ -23,13 +26,13 @@ def reciprocal_rank_fusion(
     # 1. Process BM25 rankings
     for rank, item in enumerate(bm25_results, 1):
         doc_id = item["id"]
-        rrf_scores[doc_id] += 1.0 / (k + rank)
+        rrf_scores[doc_id] += weight_bm25 * (1.0 / (k + rank))
         doc_details[doc_id] = item
 
     # 2. Process Vector rankings
     for rank, item in enumerate(vector_results, 1):
         doc_id = item["id"]
-        rrf_scores[doc_id] += 1.0 / (k + rank)
+        rrf_scores[doc_id] += weight_vector * (1.0 / (k + rank))
         if doc_id not in doc_details:
             doc_details[doc_id] = item
 
