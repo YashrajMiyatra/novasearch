@@ -12,6 +12,7 @@ from .crawler import FileCrawler
 from .highlighter import highlight_snippets
 from .tokenizer import tokenize
 from .metrics import compute_mrr, compute_ndcg_at_k
+from .chunker import RecursiveTextSplitter, TextChunk
 
 __all__ = [
     "NovaEngine",
@@ -23,4 +24,6 @@ __all__ = [
     "tokenize",
     "compute_mrr",
     "compute_ndcg_at_k",
+    "RecursiveTextSplitter",
+    "TextChunk",
 ]
