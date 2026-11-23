@@ -51,3 +51,41 @@ def tokenize(text: str, remove_stopwords: bool = True, stem: bool = True) -> Lis
         if t:
             tokens.append(t)
     return tokens
+
+
+class NgramTokenizer:
+    """
+    Subword character and word n-gram generator for fuzzy prefix/substring matching.
+    """
+
+    def __init__(self, min_n: int = 3, max_n: int = 5, ngram_type: str = "char") -> None:
+        if min_n < 1 or max_n < min_n:
+            raise ValueError(f"Invalid n-gram bounds: min_n={min_n}, max_n={max_n}")
+        if ngram_type not in ("char", "word"):
+            raise ValueError(f"ngram_type must be 'char' or 'word', got '{ngram_type}'")
+        self.min_n = min_n
+        self.max_n = max_n
+        self.ngram_type = ngram_type
+
+    def tokenize(self, text: str) -> List[str]:
+        if not text:
+            return []
+
+        if self.ngram_type == "word":
+            words = tokenize(text, remove_stopwords=False, stem=False)
+            ngrams = []
+            for n in range(self.min_n, min(self.max_n + 1, len(words) + 1)):
+                for i in range(len(words) - n + 1):
+                    ngrams.append(" ".join(words[i : i + n]))
+            return ngrams
+
+        words = tokenize(text, remove_stopwords=False, stem=False)
+        ngrams = []
+        for word in words:
+            w_len = len(word)
+            for n in range(self.min_n, self.max_n + 1):
+                if w_len < n:
+                    continue
+                for i in range(w_len - n + 1):
+                    ngrams.append(word[i : i + n])
+        return ngrams
