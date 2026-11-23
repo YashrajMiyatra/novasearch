@@ -15,6 +15,7 @@ from .metrics import compute_mrr, compute_ndcg_at_k
 from .chunker import RecursiveTextSplitter, TextChunk
 from .query_expansion import QueryExpander
 from .filter import MetadataFilter
+from .fuzzy import FuzzyMatcher, levenshtein_distance
 
 __all__ = [
     "NovaEngine",
@@ -31,4 +32,6 @@ __all__ = [
     "TextChunk",
     "QueryExpander",
     "MetadataFilter",
+    "FuzzyMatcher",
+    "levenshtein_distance",
 ]
