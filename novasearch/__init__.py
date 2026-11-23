@@ -14,6 +14,7 @@ from .tokenizer import tokenize
 from .metrics import compute_mrr, compute_ndcg_at_k
 from .chunker import RecursiveTextSplitter, TextChunk
 from .query_expansion import QueryExpander
+from .filter import MetadataFilter
 
 __all__ = [
     "NovaEngine",
@@ -28,4 +29,5 @@ __all__ = [
     "RecursiveTextSplitter",
     "TextChunk",
     "QueryExpander",
+    "MetadataFilter",
 ]
