@@ -16,6 +16,7 @@ from .chunker import RecursiveTextSplitter, TextChunk
 from .query_expansion import QueryExpander
 from .filter import MetadataFilter
 from .fuzzy import FuzzyMatcher, levenshtein_distance
+from .jaccard import jaccard_similarity, token_jaccard, shingle_jaccard
 
 __all__ = [
     "NovaEngine",
@@ -34,4 +35,7 @@ __all__ = [
     "MetadataFilter",
     "FuzzyMatcher",
     "levenshtein_distance",
+    "jaccard_similarity",
+    "token_jaccard",
+    "shingle_jaccard",
 ]
