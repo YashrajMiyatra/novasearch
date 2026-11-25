@@ -10,7 +10,7 @@ from .vector_index import VectorIndex
 from .fusion import reciprocal_rank_fusion
 from .crawler import FileCrawler
 from .highlighter import highlight_snippets
-from .tokenizer import tokenize, NgramTokenizer
+from .tokenizer import tokenize, NgramTokenizer, StopwordFilter
 from .metrics import compute_mrr, compute_ndcg_at_k
 from .chunker import RecursiveTextSplitter, TextChunk
 from .query_expansion import QueryExpander
@@ -26,6 +26,7 @@ __all__ = [
     "highlight_snippets",
     "tokenize",
     "NgramTokenizer",
+    "StopwordFilter",
     "compute_mrr",
     "compute_ndcg_at_k",
     "RecursiveTextSplitter",
