@@ -20,6 +20,7 @@ from .jaccard import jaccard_similarity, token_jaccard, shingle_jaccard
 from .vectorizer import CharNgramVectorizer
 from .trie import TrieSuggester
 from .spellcheck import SpellChecker
+from .rewriter import QueryRewriter
 
 __all__ = [
     "NovaEngine",
@@ -46,4 +47,5 @@ __all__ = [
     "CharNgramVectorizer",
     "TrieSuggester",
     "SpellChecker",
+    "QueryRewriter",
 ]
