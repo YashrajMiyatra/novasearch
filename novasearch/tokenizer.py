@@ -4,7 +4,7 @@ Zero external dependencies required.
 """
 
 import re
-from typing import List, Set
+from typing import List, Optional, Set
 
 STOPWORDS: Set[str] = {
     "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are",
@@ -89,3 +89,26 @@ class NgramTokenizer:
                 for i in range(w_len - n + 1):
                     ngrams.append(word[i : i + n])
         return ngrams
+
+
+class StopwordFilter:
+    """
+    Configurable stopword filtering pipeline supporting default, extended, and custom stopword sets.
+    """
+
+    def __init__(self, custom_stopwords: Optional[Set[str]] = None, include_defaults: bool = True) -> None:
+        self.stopwords: Set[str] = set(STOPWORDS) if include_defaults else set()
+        if custom_stopwords:
+            self.stopwords.update(s.lower() for s in custom_stopwords)
+
+    def filter(self, tokens: List[str]) -> List[str]:
+        """Filters out tokens present in the stopword vocabulary."""
+        return [t for t in tokens if t.lower() not in self.stopwords]
+
+    def add_stopwords(self, words: List[str]) -> None:
+        for w in words:
+            self.stopwords.add(w.lower())
+
+    def remove_stopwords(self, words: List[str]) -> None:
+        for w in words:
+            self.stopwords.discard(w.lower())
