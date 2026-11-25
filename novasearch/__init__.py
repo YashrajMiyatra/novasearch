@@ -19,6 +19,7 @@ from .fuzzy import FuzzyMatcher, levenshtein_distance
 from .jaccard import jaccard_similarity, token_jaccard, shingle_jaccard
 from .vectorizer import CharNgramVectorizer
 from .trie import TrieSuggester
+from .spellcheck import SpellChecker
 
 __all__ = [
     "NovaEngine",
@@ -44,4 +45,5 @@ __all__ = [
     "shingle_jaccard",
     "CharNgramVectorizer",
     "TrieSuggester",
+    "SpellChecker",
 ]
