@@ -85,3 +85,47 @@ class BM25Index:
                 "metadata": doc["metadata"],
             })
         return results
+
+
+class BM25PlusIndex(BM25Index):
+    """
+    BM25+ Ranking Algorithm (Lv & Zhai, 2011).
+    Adds a lower-bound tuning parameter delta (default 1.0) to term saturation,
+    preventing over-penalization of long documents containing relevant query terms.
+    """
+
+    def __init__(self, k1: float = 1.5, b: float = 0.75, delta: float = 1.0) -> None:
+        super().__init__(k1=k1, b=b)
+        self.delta = delta
+
+    def search(self, query: str, top_k: int = 10) -> List[Dict[str, Any]]:
+        query_terms = tokenize(query)
+        if not query_terms or self.corpus_size == 0:
+            return []
+
+        scores: Dict[str, float] = defaultdict(float)
+
+        for term in query_terms:
+            if term not in self.inverted_index:
+                continue
+            idf = self._idf(term)
+            postings = self.inverted_index[term]
+
+            for doc_id, tf in postings.items():
+                doc_len = self.doc_lens[doc_id]
+                len_norm = 1.0 - self.b + self.b * (doc_len / self.avg_doc_len)
+                term_score = idf * (((tf * (self.k1 + 1.0)) / (tf + self.k1 * len_norm)) + self.delta)
+                scores[doc_id] += term_score
+
+        ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
+        results = []
+        for rank, (doc_id, score) in enumerate(ranked, 1):
+            doc = self.docs[doc_id]
+            results.append({
+                "id": doc_id,
+                "score": round(score, 4),
+                "rank": rank,
+                "text": doc["text"],
+                "metadata": doc["metadata"],
+            })
+        return results
