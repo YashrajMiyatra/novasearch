@@ -18,6 +18,7 @@ from .filter import MetadataFilter
 from .fuzzy import FuzzyMatcher, levenshtein_distance
 from .jaccard import jaccard_similarity, token_jaccard, shingle_jaccard
 from .vectorizer import CharNgramVectorizer
+from .trie import TrieSuggester
 
 __all__ = [
     "NovaEngine",
@@ -42,4 +43,5 @@ __all__ = [
     "token_jaccard",
     "shingle_jaccard",
     "CharNgramVectorizer",
+    "TrieSuggester",
 ]
