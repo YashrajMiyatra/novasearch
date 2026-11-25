@@ -17,6 +17,7 @@ from .query_expansion import QueryExpander
 from .filter import MetadataFilter
 from .fuzzy import FuzzyMatcher, levenshtein_distance
 from .jaccard import jaccard_similarity, token_jaccard, shingle_jaccard
+from .vectorizer import CharNgramVectorizer
 
 __all__ = [
     "NovaEngine",
@@ -40,4 +41,5 @@ __all__ = [
     "jaccard_similarity",
     "token_jaccard",
     "shingle_jaccard",
+    "CharNgramVectorizer",
 ]
