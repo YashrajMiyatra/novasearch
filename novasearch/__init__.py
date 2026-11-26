@@ -22,6 +22,7 @@ from .trie import TrieSuggester
 from .spellcheck import SpellChecker
 from .rewriter import QueryRewriter
 from .synonyms import SynonymFilter
+from .phonetic import SoundexFilter
 
 __all__ = [
     "NovaEngine",
@@ -50,4 +51,5 @@ __all__ = [
     "SpellChecker",
     "QueryRewriter",
     "SynonymFilter",
+    "SoundexFilter",
 ]
