@@ -21,6 +21,7 @@ from .vectorizer import CharNgramVectorizer
 from .trie import TrieSuggester
 from .spellcheck import SpellChecker
 from .rewriter import QueryRewriter
+from .synonyms import SynonymFilter
 
 __all__ = [
     "NovaEngine",
@@ -48,4 +49,5 @@ __all__ = [
     "TrieSuggester",
     "SpellChecker",
     "QueryRewriter",
+    "SynonymFilter",
 ]
