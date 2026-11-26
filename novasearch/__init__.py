@@ -24,6 +24,7 @@ from .rewriter import QueryRewriter
 from .synonyms import SynonymFilter
 from .phonetic import SoundexFilter
 from .stemmer import PorterStemmer
+from .automaton import LevenshteinAutomaton
 
 __all__ = [
     "NovaEngine",
@@ -54,4 +55,5 @@ __all__ = [
     "SynonymFilter",
     "SoundexFilter",
     "PorterStemmer",
+    "LevenshteinAutomaton",
 ]
