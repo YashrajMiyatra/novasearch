@@ -23,6 +23,7 @@ from .spellcheck import SpellChecker
 from .rewriter import QueryRewriter
 from .synonyms import SynonymFilter
 from .phonetic import SoundexFilter
+from .stemmer import PorterStemmer
 
 __all__ = [
     "NovaEngine",
@@ -52,4 +53,5 @@ __all__ = [
     "QueryRewriter",
     "SynonymFilter",
     "SoundexFilter",
+    "PorterStemmer",
 ]
