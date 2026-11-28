@@ -5,7 +5,7 @@ NovaSearch: Hybrid Search Engine combining BM25 Lexical Matching, Vector Search,
 __version__ = "1.0.0"
 
 from .engine import NovaEngine
-from .bm25 import BM25Index, BM25PlusIndex
+from .bm25 import BM25Index, BM25PlusIndex, BM25FIndex
 from .vector_index import VectorIndex
 from .fusion import reciprocal_rank_fusion
 from .crawler import FileCrawler
@@ -30,6 +30,7 @@ __all__ = [
     "NovaEngine",
     "BM25Index",
     "BM25PlusIndex",
+    "BM25FIndex",
     "VectorIndex",
     "reciprocal_rank_fusion",
     "FileCrawler",
